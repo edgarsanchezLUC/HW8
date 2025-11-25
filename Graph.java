@@ -110,18 +110,22 @@ public class Graph {
     // for each index in the LinkedList, check if it's a destination
     ArrayList<Integer> roots = new ArrayList<>();
     // add all vertices to the roots
+    for (int j = 0; j < numVertices; j++) {
+      roots.add(j);
+    }
     for (int i = 0; i < numVertices; i++) {
-      roots.add(i);
+      for (Integer destination : adjListArr[i]) {
+        if (roots.contains(destination)) {
+          roots.remove(destination);
+        }
+      }
     }
-    Iterator<Integer[]> i = adjListArr.iterator();
-    while (i.hasNext()) {
-      roots.remove(i.get(1));
-    }
+
     // check if the size of the set is not 1
     if (roots.size() != 1) {
       return -1;
     }
 
-    return roots.get(0);
+    return vertexValues.get(roots.get(0));
   } 
 }
