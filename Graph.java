@@ -1,7 +1,7 @@
 /******************************************************************
  *
  *   YOUR NAME / SECTION NUMBER
- *
+ *   Edgar Sanchez / 002
  *   Note, additional comments provided throughout this source code
  *   is for educational purposes
  *
@@ -105,6 +105,23 @@ public class Graph {
   public int findRoot() {
 
     // ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME/SECTION AT TOP OF FILE
-    return -1;
+    // root will be found in the adjacency list
+    // root will be a source and will not be found as a destination
+    // for each index in the LinkedList, check if it's a destination
+    ArrayList<Integer> roots = new ArrayList<>();
+    // add all vertices to the roots
+    for (int i = 0; i < numVertices; i++) {
+      roots.add(i);
+    }
+    Iterator<Integer[]> i = adjListArr.iterator();
+    while (i.hasNext()) {
+      roots.remove(i.get(1));
+    }
+    // check if the size of the set is not 1
+    if (roots.size() != 1) {
+      return -1;
+    }
+
+    return roots.get(0);
   } 
 }
