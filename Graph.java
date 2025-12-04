@@ -110,6 +110,33 @@ public class Graph {
     // for each index in the LinkedList, check if it's a destination
     ArrayList<Integer> roots = new ArrayList<>();
     // add all vertices to the roots
+    ArrayList<Boolean> isRoot = new ArrayList<>();
+    for (int i = 0; i < numVertices; i++) {
+      isRoot.add(true);
+    }
+    // for each destination we see in adjListArr, we switch to false in isRoot
+    for (int j = 0; j < numVertices; j++) {
+      for (Integer destination : adjListArr[j]) {
+        isRoot.set(destination, false);
+      }
+    }
+    int count = 0;
+    int index = 0;
+    for (int n = 0; n < numVertices; n++) {
+      if (isRoot.get(n) == true) {
+        index = n;
+        count++;
+      }
+    }
+    if (count == 1) {
+      return vertexValues.get(index);
+    }
+    return -1;
+
+  
+
+
+    /*
     for (int j = 0; j < numVertices; j++) {
       roots.add(j);
     }
@@ -125,7 +152,8 @@ public class Graph {
     if (roots.size() != 1) {
       return -1;
     }
-
+    // return the value of the vertex
     return vertexValues.get(roots.get(0));
-  } 
+  */
+  }
 }
